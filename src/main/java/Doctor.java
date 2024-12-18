@@ -19,7 +19,7 @@ public class Doctor extends User {
         this.speciality = speciality;
     }
 
-    // Coleciones
+    // Coleciones // clase anidada
     ArrayList<AvailableAppointments> availableAppointments = new ArrayList<>();
     public void addAvailableAppointment(Date date, String time){
         // Crear nueva cita
@@ -30,6 +30,14 @@ public class Doctor extends User {
         return availableAppointments;
     }
 
+    @Override
+    public String toString() {
+        // Traer los datos de User y añadir especialidad
+        return super.toString() + "\nSpeciality: " + speciality +
+                "\nAvailable appointments: " + availableAppointments.toString();
+    }
+
+    // Clase inner
     public static class AvailableAppointments {
         private int id;
         private Date date;
@@ -64,6 +72,11 @@ public class Doctor extends User {
         }
 
         private String time;
+
+        @Override
+        public String toString() {
+            return "Available appointments: \nDate: " + date + "\nTime: " + time;
+        }
     }
 
 }
