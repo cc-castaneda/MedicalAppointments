@@ -47,4 +47,11 @@ public class Patient extends User {
             System.out.println("El número telefónico debe ser de 10 dígitos");
         }
     }
+
+    // Sobreescritura de método
+    @Override
+    public String toString() {
+        return super.toString() + "\n Birthday: " + birthday + "\n Weight: " +
+            getWeight() + "\n Height: " + getHeight() + "\n Blood type: " + bloodType;
+    }
 }

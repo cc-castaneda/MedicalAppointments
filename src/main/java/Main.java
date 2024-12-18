@@ -14,12 +14,14 @@ public class Main {
             System.out.println(availableAppointment.getDate() + " " + availableAppointment.getTime());
         }
 
-        /*Patient patient = new Patient("Juan", "juan@mail.com");
-        patient.setWeight(70.0);
-        System.out.println(patient.getWeight());
+        Patient patient = new Patient("Juan", "juan@mail.com");
+        // patient.setWeight(70.0);
+        // System.out.println(patient.getWeight());
+        //
+        // patient.setPhoneNumber("12345678");
+        // System.out.println(patient.getPhoneNumber());
 
-        patient.setPhoneNumber("12345678");
-        System.out.println(patient.getPhoneNumber());*/
+        System.out.println(patient);
 
     }
 }

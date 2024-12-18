@@ -50,4 +50,11 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    // Sobreescribir el comportamiento del método toString
+    @Override
+    public String toString() {
+        return "user: " + name + ", Email: " + email +
+                "\nAddress: " + address + ". Phone number: " + phoneNumber;
+    }
 }
