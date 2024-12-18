@@ -1,14 +1,16 @@
+package model;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Doctor extends User {
-    // El único atributo que hace especial a la clase Doctor es la especialidad
+    // El único atributo que hace especial a la clase model.Doctor es la especialidad
     private String speciality;
 
-    Doctor(String name, String email) {
+    public Doctor(String name, String email) {
         super(name, email);
-        System.out.println("El nombre del doctor asignado es: " + name);
-        this.speciality = speciality;
     }
 
     public String getSpeciality() {
@@ -21,7 +23,7 @@ public class Doctor extends User {
 
     // Coleciones // clase anidada
     ArrayList<AvailableAppointments> availableAppointments = new ArrayList<>();
-    public void addAvailableAppointment(Date date, String time){
+    public void addAvailableAppointment(String date, String time){
         // Crear nueva cita
         availableAppointments.add(new AvailableAppointments(date, time));
     }
@@ -32,18 +34,30 @@ public class Doctor extends User {
 
     @Override
     public String toString() {
-        // Traer los datos de User y añadir especialidad
+        // Traer los datos de model.User y añadir especialidad
         return super.toString() + "\nSpeciality: " + speciality +
                 "\nAvailable appointments: " + availableAppointments.toString();
+    }
+
+    @Override
+    public void showDataUser() {
+        System.out.println("Employed Hospital: Cruz Verde");
+        System.out.println("Departament: Pediatric");
     }
 
     // Clase inner
     public static class AvailableAppointments {
         private int id;
         private Date date;
+        private String time;
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-        public AvailableAppointments(Date date, String time) {
-            this.date = date;
+        public AvailableAppointments(String date, String time) {
+            try {
+                this.date = format.parse(date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
             this.time = time;
         }
 
@@ -55,8 +69,12 @@ public class Doctor extends User {
             this.time = time;
         }
 
-        public Date getDate() {
+        public Date getDate(String DATE) {
             return date;
+        }
+
+        public String getDate() {
+            return format.format(date);
         }
 
         public void setDate(Date date) {
@@ -70,8 +88,6 @@ public class Doctor extends User {
         public void setId(int id) {
             this.id = id;
         }
-
-        private String time;
 
         @Override
         public String toString() {
