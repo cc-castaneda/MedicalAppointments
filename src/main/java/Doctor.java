@@ -1,20 +1,70 @@
-public class Doctor {
-    static int id = 0; // autoincrement
-    String name;
-    String speciality;
+import java.util.ArrayList;
+import java.util.Date;
 
-    Doctor(String name, String speciality) {
-        this.name = name;
+public class Doctor extends User {
+    // El único atributo que hace especial a la clase Doctor es la especialidad
+    private String speciality;
+
+    Doctor(String name, String email) {
+        super(name, email);
+        System.out.println("El nombre del doctor asignado es: " + name);
         this.speciality = speciality;
-        id++;
     }
 
-    // Comportamiento
-    public void showName() {
-        System.out.println("Nombre: " + name);
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void showId() {
-        System.out.println("ID: " + id);
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
+
+    // Coleciones
+    ArrayList<AvailableAppointments> availableAppointments = new ArrayList<>();
+    public void addAvailableAppointment(Date date, String time){
+        // Crear nueva cita
+        availableAppointments.add(new AvailableAppointments(date, time));
+    }
+    // Siquiero devolver los elementos de las citas disponibles
+    public ArrayList<AvailableAppointments> getAvailableAppointments() {
+        return availableAppointments;
+    }
+
+    public static class AvailableAppointments {
+        private int id;
+        private Date date;
+
+        public AvailableAppointments(Date date, String time) {
+            this.date = date;
+            this.time = time;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        private String time;
+    }
+
 }
+
